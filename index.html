@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Sansita+Swashed:wght@300..900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #f7f3e9;
+            --text-dark: #1f1f1f;
+            --accent-gold: #c29b62;
+            --heading-serif: 'Playfair Display', Georgia, serif;
+            --cursive-serif: 'Sansita Swashed', 'Playfair Display', Georgia, serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-snap-type: y mandatory;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Fixed Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            display: flex;
+            justify-content: flex-end;
+            padding: 25px 50px;
+            gap: 30px;
+            z-index: 1000;
+            background-color: rgba(247, 243, 233, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #1f1f1f;
+            font-weight: 600;
+        }
+
+        /* Full Page Section Layout */
+        .page-section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 40px 60px;
+            scroll-snap-align: start;
+        }
+
+        .container {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Typography & Common Styles */
+        .section-heading {
+            font-family: var(--cursive-serif), var(--heading-serif);
+            font-size: 3.8rem;
+            color: #a05a2c;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .section-heading::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- Section 1: Home / Hero --- */
+        #home h1 {
+            font-family: var(--heading-serif);
+            font-size: 4.5rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        #home h1 em {
+            font-style: italic;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            text-align: center;
+        }
+
+        .contact-item:hover,
+        .cert-card:hover {
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item h3 {
+            font-family: var(--heading-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-item a,
+        .contact-item p {
+            color: var(--text-dark);
+            text-decoration: none;
+            word-break: break-all;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* --- Section 2: About Me --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .profile-frame {
+            width: 100%;
+            height: 420px;
+            border-radius: 200px 200px 0 0;
+            overflow: hidden;
+            background-color: #d8f0fa;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* --- Section 3: Certificates --- */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .cert-card h3 {
+            font-family: var(--heading-serif);
+            font-size: 1.4rem;
+            font-weight: 400;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 20px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-card,
+        .project-card,
+        .contact-item,
+        .about-text,
+        .sub-projects-container {
+
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(194, 155, 98, 0.2);
+            outline: 2px solid #fff;
+        }
+
+        .sub-projects-container {
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(194, 155, 98, 0.2);
+            outline: 2px solid #fff;
+        }
+
+        .cert-card p {
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .cert-card .org {
+            font-weight: 700;
+        }
+
+        /* --- Section 4: Main Projects --- */
+        .projects-header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 25px;
+        }
+
+        .project-type-title {
+            font-family: var(--heading-serif);
+            font-size: 2.2rem;
+            font-weight: 400;
+            text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .project-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .project-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .project-card .language {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .project-card ul {
+            padding-left: 20px;
+        }
+
+        .project-card li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        /* --- Section 5: Sub Projects --- */
+        .sub-projects-container {
+            border-top: 2px solid var(--accent-gold);
+            padding-top: 40px;
+            width: 100%;
+        }
+
+        .sub-projects-list {
+            list-style: none;
+        }
+
+        .sub-projects-list li {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .sub-projects-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        /* Responsive Fallback */
+        @media (max-width: 900px) {
+            html {
+                scroll-snap-type: none;
+            }
+
+            .page-section {
+                min-height: auto;
+                padding: 80px 20px 40px;
+            }
+
+            .contact-grid,
+            .certificates-grid,
+            .about-content,
+            .projects-header-grid,
+            .project-details-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            #home h1 {
+                font-size: 3rem;
+                margin-bottom: 50px;
+            }
+
+            .section-heading {
+                font-size: 3rem;
+            }
+
+            .cert-card h3 {
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fixed Header Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About me</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#projects">Projects</a>
+    </nav>
+
+    <!-- Page 1: Home Section -->
+    <section class="page-section" id="home">
+        <div class="container">
+            <h1><em>Hello,</em> I am Elbert Nebres</h1>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>Linkedin</h3>
+                    <a href="https://www.linkedin.com/in/elbert-nebres-168391349" target="_blank">linkedin</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Github</h3>
+                    <a href="https://github.com/Kanae27" target="_blank">Github</a>
+                </div>
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>elbertnebres@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Online Certifications</h3>
+                    <a href="https://credly.com/users/elbert-nebres" target="_blank">Credly</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: About Me Section -->
+    <section class="page-section" id="about">
+        <div class="container">
+            <h2 class="section-heading" style="text-align: left;">About me</h2>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p> My name is Elbert D. Nebres, an IT graduate from Batangas State University, Major in Network
+                        Technology. I am reaching out to introduce myself and share my interest in any web developer or
+                        programming opportunities you may have available. During my OJT, I was part of the team that
+                        built the Gender and Development (GAD) Information System, a web platform used by our university
+                        office to manage records and reports.
+                        I also help a cloud-based Point of Sale system, with real-time sales tracking, inventory, and
+                        reports, accessible from any device. In both projects, I worked with PHP, MySQL, JavaScript, and
+                        Bootstrap, contributing to the database and the system's overall functionality. Aside from
+                        coding, I also have a background in computer hardware and networking, which helps me understand
+                        how systems run end to end, not just the code side.
+                    </p>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: Certificates Section -->
+    <section class="page-section" id="certificates">
+        <div class="container">
+            <h2 class="section-heading">Certificates</h2>
+
+            <div class="certificates-grid">
+                <div class="cert-card">
+                    <h3>Philnits Passport Exam Passer</h3>
+                    <p class="org">Philippine National Information Technology Standards Foundation, Inc</p>
+                    <p>2024</p>
+                </div>
+                <div class="cert-card">
+                    <h3>Bachelor of Science in Information Technology Major in Network Technology</h3>
+                    <p class="org">Batangas State University</p>
+                    <p>2021 - 2025</p>
+                </div>
+
+                <div class="cert-card">
+                    <h3>Computer System Servicing NCII</h3>
+                    <p class="org">TESDA</p>
+                    <p>March 2026</p>
+
+                </div>
+            </div>
+    </section>
+
+    <!-- Page 4: Projects Section -->
+    <section class="page-section" id="projects">
+        <div class="container">
+            <h2 class="section-heading">Projects</h2>
+
+            <div class="projects-header-grid">
+                <h3 class="project-type-title">Capstone Project</h3>
+                <h3 class="project-type-title">Internship</h3>
+            </div>
+
+            <div class="project-details-grid">
+                <div class="project-card">
+                    <h4>Client Based Point of Sale System</h4>
+                    <p class="language"><strong>Language:</strong> PHP, MySQL, Bootstrap</p>
+                    <ul>
+                        <li> Developed a multi-user, cloud-hosted POS platform with real-time sales processing,
+                            inventory tracking, and
+                            automated report generation — demonstrating ability to build tools that reduce manual
+                            recording and
+                            organize business data efficiently.
+                        </li>
+                        <li> Designed the system to be accessible from any device, supporting multi-location
+                            coordination similar to
+                            managing records across departments or branches
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="project-card">
+                    <h4> Event website of Gender and Development</h4>
+                    <p class="language"><strong>Language:</strong> PHP, MySQL, Bootstrap</p>
+                    <ul>
+                        <li>Designed, built, and deployed the Gender and Development (GAD) Information System — a
+                            centralized web platform used by the university's GAD office to manage policies,
+                            reports,
+                            and stakeholder resources.</li>
+
+                        <li>Organized and digitized institutional documents and records into a structured,
+                            searchable web system, replacing manual filing and reducing retrieval time for office
+                            staff.
+                        </li>
+
+                        <li>Ensured files, records, and web content were consistently organized and up to date,
+                            applying the same attention to order and accuracy required in day-to-day admin work.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 5: Sub Projects Section -->
+    <section class="page-section" id="sub-projects">
+        <div class="container">
+            <h2 class="section-heading">Sub Projects</h2>
+            <div class="sub-projects-container">
+                <ul class="sub-projects-list">
+                    <li>Point of Sale (POS) System: Desktop sales application integrated with a relational SQLite
+                        database for real-time inventory and transaction tracking.</li>
+                    <li>Custom Alarm & Notification Manager: Time-management desktop application featuring scheduled
+                        audio alerts and background thread monitoring.</li>
+                    <li>Dynamic QR Code Generator: Utility tool for generating custom QR codes to instantly share Wi-Fi
+                        credentials and document links.</li>
+                    <li>Local Network & Web File Distribution Tool: Cross-platform file-sharing utility supporting
+                        peer-to-peer transfers via local IP addresses and web endpoints.</li>
+                    <li>Flask Weather Forecasting Portal: Full-stack web application integrated with RESTful weather
+                        APIs to deliver real-time meteorological data.</li>
+                    <li>Task Management Web Application: Interactive To-Do list web app featuring persistent storage,
+                        task categorization, and state tracking.</li>
+                    <li>Python Screen Capture Tool: High-performance desktop screen recorder built with Python for
+                        capturing video streams and local audio.</li>
+                    <li>Automated Excel Data Cleaning Utility: Python-driven ETL tool designed to parse, sanitize, and
+                        format complex multi-sheet spreadsheet data.</li>
+                    <li>Secure Password Generator & Vault Exporter: Cryptographically sound password generation tool
+                        with automated local export to encrypted .txt archives.</li>
+
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
