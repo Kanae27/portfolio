@@ -46,17 +46,19 @@
             left: 0;
             display: flex;
             justify-content: flex-end;
-            padding: 25px 50px;
-            gap: 30px;
+            align-items: center;
+            padding: 20px 30px;
+            gap: 25px;
             z-index: 1000;
-            background-color: rgba(247, 243, 233, 0.9);
+            background-color: rgba(247, 243, 233, 0.95);
             backdrop-filter: blur(5px);
         }
 
         nav a {
             text-decoration: none;
             color: #666;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            white-space: nowrap;
             transition: color 0.3s ease;
         }
 
@@ -202,15 +204,6 @@
         .contact-item,
         .about-text,
         .sub-projects-container {
-
-            background-color: rgba(255, 255, 255, 0.4);
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid rgba(194, 155, 98, 0.2);
-            outline: 2px solid #fff;
-        }
-
-        .sub-projects-container {
             background-color: rgba(255, 255, 255, 0.4);
             padding: 25px;
             border-radius: 8px;
@@ -299,10 +292,21 @@
             line-height: 1;
         }
 
-        /* Responsive Fallback */
+        /* Mobile Adjustments */
         @media (max-width: 900px) {
             html {
                 scroll-snap-type: none;
+            }
+
+            nav {
+                justify-content: center;
+                padding: 15px 10px;
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 0.95rem;
+                white-space: nowrap;
             }
 
             .page-section {
@@ -313,10 +317,39 @@
             .contact-grid,
             .certificates-grid,
             .about-content,
-            .projects-header-grid,
             .project-details-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
+            }
+
+            /* Hide desktop header grid on mobile */
+            .projects-header-grid {
+                display: none;
+            }
+
+            /* Add dynamic category headers inside cards on mobile */
+            .project-details-grid .project-card:nth-child(1)::before {
+                content: "Capstone Project";
+                display: block;
+                font-family: var(--heading-serif);
+                font-size: 2rem;
+                text-align: center;
+                padding-bottom: 8px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid var(--accent-gold);
+                color: var(--text-dark);
+            }
+
+            .project-details-grid .project-card:nth-child(2)::before {
+                content: "Internship";
+                display: block;
+                font-family: var(--heading-serif);
+                font-size: 2rem;
+                text-align: center;
+                padding-bottom: 8px;
+                margin-bottom: 15px;
+                border-bottom: 2px solid var(--accent-gold);
+                color: var(--text-dark);
             }
 
             #home h1 {
